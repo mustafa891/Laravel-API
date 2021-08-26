@@ -14,8 +14,13 @@ class AuthController extends Controller
     {
         if (Auth::attempt($request->all())) {
             return [
+                'message' => 'success',
                 'user' => auth()->user(),
                 'token' => auth()->user()->createToken('API TOKEN')->plainTextToken,
+            ];
+        } else {
+            return [
+                'message' => 'user not exists',
             ];
         }
     }

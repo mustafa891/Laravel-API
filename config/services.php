@@ -1,5 +1,6 @@
 <?php
 
+
 return [
 
     /*
@@ -29,5 +30,11 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+
+    'google' => [
+        'client_id' => '4461028135-oskjlfa91dbl816th3c7l0cnvvo1lg40.apps.googleusercontent.com',
+        'client_secret' => 'Qjee3rzESlaHfuqinymMaR1K',
+        'redirect' => 'http://localhost/image/public/auth/google/callback',
+    ]
 
 ];

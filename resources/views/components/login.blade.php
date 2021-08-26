@@ -5,6 +5,9 @@
                 <h5 class="modal-title" id="exampleModalLabel">Login</h5>
             </div>
             <div class="modal-body">
+                @if (session()->has('error'))
+                    <small> {{ session('error') }}</small>
+                @endif
                 <form action="{{ route('login') }}" method="post" id="login">
                     @csrf
                     <div class="form-group">
@@ -24,10 +27,16 @@
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary"
-                    onclick="document.querySelector('#login').submit()">login</button>
+            <div class="modal-footer" style="justify-content: space-between !important;">
+                <div class="google">
+                    <button class="btn btn-google-plus" onclick='window.location = "{{ url('auth/google') }}" '>Login
+                        With Google</button>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary"
+                        onclick="document.querySelector('#login').submit()">login</button>
+                </div>
             </div>
         </div>
     </div>

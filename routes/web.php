@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ImageController;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,10 +22,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ImageController::class, 'index']);
 
 Route::get('login', function () {
-    return back();
+    return Redirect('/');
 })->name('login');
 
 Route::post('login', [AuthController::class, 'login'])->middleware('guest')->name('login');
+Route::post('logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
+
+// google login 
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 Route::group(['middleware' => 'auth', 'prefix' => 'image', 'as' => 'image.'], function () {
     Route::get('create', [ImageController::class, 'create'])->name('create');
