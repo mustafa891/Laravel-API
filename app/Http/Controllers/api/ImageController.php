@@ -15,6 +15,12 @@ class ImageController extends Controller
         return ImageResource::collection(Image::all());
     }
 
+    public function show(Image $image)
+    {
+            return $image;        
+    }
+    
+
     public function store(Request $request)
     {
         // Store Image

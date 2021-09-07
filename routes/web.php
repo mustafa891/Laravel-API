@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\SmsController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +28,8 @@ Route::get('login', function () {
 })->name('login');
 
 Route::post('login', [AuthController::class, 'login'])->middleware('guest')->name('login');
+Route::post('register', [AuthController::class, 'register'])->middleware('guest')->name('register');
+Route::post('/verifiy_reg', [AuthController::class, 'complete_register'])->name('verifiy_reg');
 Route::post('logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 // google login 

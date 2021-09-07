@@ -27,12 +27,10 @@ class GoogleController extends Controller
                 Cookie::queue('token', $token, 15);
                 Auth::login($finduser);
                 return redirect('/');
-            } else {
-                return redirect('/image/create');
             }
+            return redirect('/image/create');
         } catch (Expectation $e) {
-
-            dd($e->getMessage());
+            return "have error";
         }
     }
 }

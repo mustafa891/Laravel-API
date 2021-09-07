@@ -37,7 +37,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['single', 'flare'],
             'ignore_exceptions' => false,
         ],
 
@@ -53,9 +53,12 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
             'days' => 14,
         ],
+        
 
         'slack' => [
             'driver' => 'slack',
+            'channels' => ['daily', 'flare'],
+            'ignore_exceptions' => false,
             'url' => env('LOG_SLACK_WEBHOOK_URL'),
             'username' => 'Laravel Log',
             'emoji' => ':boom:',
@@ -80,6 +83,10 @@ return [
             'with' => [
                 'stream' => 'php://stderr',
             ],
+        ],
+
+        'flare' => [
+            'driver' => 'flare',
         ],
 
         'syslog' => [

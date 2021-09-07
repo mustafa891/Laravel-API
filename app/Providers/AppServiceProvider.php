@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\ActiveCode;
+use App\Observers\ActiveCodeObserver;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\ServiceProvider;
 

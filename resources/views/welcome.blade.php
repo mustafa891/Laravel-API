@@ -1,8 +1,9 @@
 <x-app>
     <div class="container">
         <div class="row justify-content-center">
+            @if ($images)                
             @foreach ($images as $image)
-                <div class="col-lg-4 col-md-6 p-2">
+                <div class="col-lg-5 col-md-6 p-2">
                     <div class="card position-relative mt-2"
                         style="background-image: url('{{ asset('uploads/' . $image->image) }}')">
                         <div class="detials p-2">
@@ -13,10 +14,14 @@
                     </div>
                 </div>
             @endforeach
+            @else
+             <span class="text-center p-3">Empty</span>
+            @endif
         </div>
     </div>
 
     @guest
+        <x-register></x-register>
         <x-login></x-login>
     @endguest
 </x-app>

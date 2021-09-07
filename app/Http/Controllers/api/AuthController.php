@@ -7,6 +7,7 @@ use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -23,5 +24,21 @@ class AuthController extends Controller
                 'message' => 'user not exists',
             ];
         }
+    }
+
+    public function register(Request $request)
+    {
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return [
+            'message' => 'success',
+            'user' => $user,
+            'token' => $user->createToken('API TOKEN')->plainTextToken,
+        ];
     }
 }
